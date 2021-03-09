@@ -101,5 +101,59 @@ export const style = StyleSheet.create({
         fontSize: 18,
         fontWeight: '400',
         color: '#9e9e9e'
+    },
+    contEps: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        marginLeft: 5
+    },
+    eps: {
+        backgroundColor: '#fff',
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: '#ffaaaa',
+        marginHorizontal: 5,
+        marginVertical: 5
+    },
+    textEps: {
+        color: '#ffaaaa',
+        padding: 5,
+        marginHorizontal: 3
+    },
+    titleMp: {
+        height: 40,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#ffaaaa',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginHorizontal: 5
+    },
+    mp: {
+        color: '#ffaaaa',
+        fontWeight: '700'
+    },
+    contDown: {
+        marginHorizontal: 5
+    },
+    contLink: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        marginHorizontal: 10,
+        marginVertical: 10
+    },
+    link: {
+        backgroundColor: '#fff',
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: '#ffaaaa',
+        marginHorizontal: 5,
+        marginVertical: 5
+    },
+    textLink: {
+        padding: 5,
+        color: 'dodgerblue',
+        marginHorizontal: 3
     }
 })

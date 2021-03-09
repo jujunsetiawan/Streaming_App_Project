@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ScrollView, Image, TouchableWithoutFeedback, TouchableOpacity } from 'react-native'
+import { Text, View, ScrollView, Image, TouchableWithoutFeedback, TouchableOpacity, TouchableNativeFeedback, Linking } from 'react-native'
 import * as Animatable from 'react-native-animatable';
 import YouTube from 'react-native-youtube';
 import { style } from './styleDetail'
@@ -31,10 +31,10 @@ export class Detail extends Component {
                         style={{ alignSelf: 'stretch', height: 200 }}
                     />
                     <View style={style.contTitle}>
-                        <Animatable.Text animation='bounce' easing='ease-out' duration={2000} numberOfLines={2} style={style.title}>Shingeki no Kyojin The Final Season</Animatable.Text>
+                        <Animatable.Text animation='slideInDown' easing='ease-out' duration={2000} numberOfLines={2} style={style.title}>Shingeki no Kyojin The Final Season</Animatable.Text>
                     </View>
                     <View style={style.contData}>
-                        <View style={style.titleData}>
+                        <Animatable.View animation='slideInLeft' easing='ease-out' duration={2000} style={style.titleData}>
                             <Text style={{ marginBottom: 3 }}>Japanese</Text>
                             <Text style={{ marginBottom: 3 }}>Skor</Text>
                             <Text style={{ marginBottom: 3 }}>Produser</Text>
@@ -45,8 +45,8 @@ export class Detail extends Component {
                             <Text style={{ marginBottom: 3 }}>Studio</Text>
                             <Text style={{ marginBottom: 3 }}>Tanggal Rilis</Text>
                             <Text style={{ marginBottom: 3 }}>Genre</Text>
-                        </View>
-                        <View style={style.data}>
+                        </Animatable.View>
+                        <Animatable.View animation='lightSpeedIn' easing='ease-out' duration={3000} style={style.data}>
                             <Text style={{ marginBottom: 3 }} numberOfLines={1}>:  The Final Season</Text>
                             <Text style={{ marginBottom: 3 }}>:  92.2</Text>
                             <Text style={{ marginBottom: 3 }} numberOfLines={1}>:  Pony Canyon, Techno Sound</Text>
@@ -57,11 +57,11 @@ export class Detail extends Component {
                             <Text style={{ marginBottom: 3 }}>:  Mappa</Text>
                             <Text style={{ marginBottom: 3 }}>:  Des 07, 2020 </Text>
                             <Text style={{ marginBottom: 3 }} numberOfLines={1}>:  Action, Drama, Fantasy, Mistery, Millitary</Text>
-                        </View>
+                        </Animatable.View>
                     </View>
-                    <Animatable.View animation={this.state.show == true ? 'pulse' : null} easing='ease-out' duration={1000} style={this.state.show == false ? style.contSynopsis : style.contSynopsis1}>
-                        <Animatable.Text animation='bounce' easing='ease-out' duration={2000} style={style.titleSynopsis}>Synopsis</Animatable.Text>
-                        <Animatable.Text animation='pulse' easing='ease-out' duration={2000} numberOfLines={this.state.show == false ? 7 : null} style={style.synopsis}>Eren telah berhasil melihat lautan setelah perjuangannya. Perang yang dimana Marley melawan aliansi timur tengah. Di musim keempat ini, akan muncul berbagai karakter baru seperti magath, Pieck, Gaby dan banyak yang lainya. alkefedf ekljf wejfg wrojg ewqorjg wroig wroijg worigw rrrowigr wgrwoigwg wrog wrokgwok gworkgw rog worig worggggggwpowrkg worgk wrgkw plkwrg wo </Animatable.Text>
+                    <Animatable.View animation={this.state.show == true ? 'flipInX' : 'flipInY'} easing='ease-out' duration={2000} style={this.state.show == false ? style.contSynopsis : style.contSynopsis1}>
+                        <Animatable.Text animation='bounceInDown' easing='ease-out' duration={3000} style={style.titleSynopsis}>Synopsis</Animatable.Text>
+                        <Animatable.Text animation='slideInUp' easing='ease-out' duration={2000} numberOfLines={this.state.show == false ? 7 : null} style={style.synopsis}>Eren telah berhasil melihat lautan setelah perjuangannya. Perang yang dimana Marley melawan aliansi timur tengah. Di musim keempat ini, akan muncul berbagai karakter baru seperti magath, Pieck, Gaby dan banyak yang lainya. alkefedf ekljf wejfg wrojg ewqorjg wroig wroijg worigw rrrowigr wgrwoigwg wrog wrokgwok gworkgw rog worig worggggggwpowrkg worgk wrgkw plkwrg wo </Animatable.Text>
                         <Animatable.Text animation={this.state.show == false ? 'pulse' : null} easing='ease-out' duration={1000} style={style.more} onPress={() => this.setState({ show: !this.state.show })}>{this.state.show == false ? 'Show All' : 'Close'}</Animatable.Text>
                     </Animatable.View>
                     <Text style={style.titleMain}>Main Caracter</Text>
@@ -79,35 +79,52 @@ export class Detail extends Component {
                         </TouchableWithoutFeedback>
                     </ScrollView>
                     <View style={style.contEranda}>
-                        <TouchableOpacity onPress={this.eranda} style={this.state.eranda == true ? style.contStream : [style.contStream,{ borderBottomWidth: 3, borderColor: '#ffaaaa'}]}>
+                        <TouchableOpacity onPress={this.eranda} style={this.state.eranda == true ? style.contStream : [style.contStream, { borderBottomWidth: 3, borderColor: '#ffaaaa' }]}>
                             <Animatable.View ref={this.handleTouchRef}>
-                                <Text style={this.state.eranda == true ? style.stream : [style.stream,{color: '#ffaaaa'}]}>Streaming</Text>
+                                <Text style={this.state.eranda == true ? style.stream : [style.stream, { color: '#ffaaaa' }]}>Streaming</Text>
                             </Animatable.View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={this.state.eranda == false ? style.contStream : [style.contStream,{ borderBottomWidth: 3, borderColor: '#ffaaaa'}]} onPress={this.ins}>
+                        <TouchableOpacity style={this.state.eranda == false ? style.contStream : [style.contStream, { borderBottomWidth: 3, borderColor: '#ffaaaa' }]} onPress={this.ins}>
                             <Animatable.View ref={this.handleDownRef}>
-                                <Text style={this.state.eranda == false ? style.stream : [style.stream,{color: '#ffaaaa'}]}>Download</Text>
+                                <Text style={this.state.eranda == false ? style.stream : [style.stream, { color: '#ffaaaa' }]}>Download</Text>
                             </Animatable.View>
                         </TouchableOpacity>
                     </View>
-                    {/* <View>
-                    <View>/
-                        <Text></Text>
-                        <Text></Text>
-                    </View>
-                    <View>
-                        <Text></Text>
-                        <Text></Text>
-                    </View>
-                    <View>
-                        <Text></Text>
-                        <Text></Text>
-                    </View>
-                    <View>
-                        <Text></Text>
-                        <Text></Text>
-                    </View>
-                </View> */}
+                    {this.state.eranda == false
+                        ? <View style={style.contEps}>
+                            <TouchableNativeFeedback>
+                                <View style={style.eps}>
+                                    <Text style={style.textEps}>Episode 1</Text>
+                                </View>
+                            </TouchableNativeFeedback>
+                        </View>
+                        : <View style={style.contDown}>
+                            <View style={style.titleMp}>
+                                <Text style={style.mp}>MP4 360p</Text>
+                            </View>
+                            <View style={style.contLink}>
+                                <TouchableNativeFeedback>
+                                    <View style={style.link}>
+                                        <Text style={style.textLink}>ZippyShare</Text>
+                                    </View>
+                                </TouchableNativeFeedback>
+                                <View style={style.link}>
+                                    <Text style={style.textLink}>Filesim</Text>
+                                </View>
+                                <View style={style.link}>
+                                    <Text style={style.textLink}>Racaty</Text>
+                                </View>
+                                <View style={style.link}>
+                                    <Text style={style.textLink}>Acefile</Text>
+                                </View>
+                                <View style={style.link}>
+                                    <Text style={style.textLink}>Mega</Text>
+                                </View>
+                                <View style={style.link}>
+                                    <Text style={style.textLink}>MegaUp</Text>
+                                </View>
+                            </View>
+                        </View>}
                 </ScrollView>
             </View>
         )
